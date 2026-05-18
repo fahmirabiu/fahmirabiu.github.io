@@ -1,18 +1,19 @@
-<!DOCTYPE html<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muh Fahmi | Portfolio</title>
+    <title>Scofield Dev | Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap');
+        /* Import font Archivo untuk kesan gagah/geometris, dan Inter untuk teks isi */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Archivo:wght@700;900&display=swap');
 
         :root {
-            /* Palet Biru Dongker / Navy */
-            --bg-color: #0B132B;       /* Biru dongker sangat gelap untuk background */
-            --surface-color: #1C2541;  /* Biru dongker sedikit lebih terang untuk card */
-            --text-main: #F0F4F8;      /* Putih kebiruan agar tidak terlalu mencolok */
-            --text-muted: #8D99AE;     /* Abu-abu kebiruan untuk teks pendukung */
-            --accent-color: #48CAE4;   /* Cyan muda yang elegan sebagai aksen */
+            --bg-color: #080F1F;       /* Obsidian Navy */
+            --surface-color: #121F38;  /* Deep Blue untuk card */
+            --text-main: #F0F4F8;      
+            --text-muted: #8D99AE;     /* Steel Gray */
+            --accent-color: #00E5FF;   /* Electric Cyan */
         }
 
         * {
@@ -28,47 +29,19 @@
             color: var(--text-main);
             line-height: 1.6;
         }
-        /* Kontainer Utama - Memberikan jarak "Kamera" untuk efek 3D */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            perspective: 1200px; /* Menentukan kedalaman ruang 3D */
-        }
 
-        .card {
-            background-color: var(--surface-color);
-            border: 1px solid #2A3B5C;
-            border-radius: 8px;
-            overflow: hidden;
-            
-            /* Mengaktifkan ruang 3D pada elemen anak */
-            transform-style: preserve-3d; 
-            /* Menggunakan cubic-bezier agar pergerakan hover terasa lebih mekanis dan realistis */
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
-            will-change: transform;
-        }
-
-        .card:hover {
-            /* Memutar kartu ke sumbu X dan Y, serta menariknya mendekat (scale3d) */
-            transform: rotateY(-10deg) rotateX(10deg) scale3d(1.05, 1.05, 1.05);
-            /* Bayangan ganda: luar untuk kedalaman, inset untuk pantulan cahaya */
-            box-shadow: 
-                -20px 30px 40px rgba(0,0,0,0.6), 
-                inset 0 0 20px rgba(255,255,255,0.05);
-            border-color: var(--accent-color);
-        }
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
         }
 
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
-            padding: 2rem 5%;
+            padding: 1.5rem 5%;
             align-items: center;
-            background: rgba(11, 19, 43, 0.9);
+            background: rgba(8, 15, 31, 0.9);
             position: fixed;
             width: 100%;
             top: 0;
@@ -77,12 +50,30 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        nav .logo {
-            font-size: 1.5rem;
-            font-family: 'Playfair Display', serif;
-            color: var(--accent-color);
+        /* Container Logo di Navbar */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            letter-spacing: 2px;
+        }
+
+        .logo-img {
+            height: 42px; /* Ukuran tinggi logo yang ideal dan proporsional */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--accent-color);
         }
 
         nav ul {
@@ -98,46 +89,55 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
+        nav ul a:hover {
             color: var(--accent-color);
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0 5%;
-            margin-top: 2rem;
+        }
+
+        .hero p.intro {
+            font-size: 1rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
         }
 
         .hero h1 span {
             color: var(--accent-color);
-            font-style: italic;
         }
 
-        .hero p {
+        .hero p.tagline {
             font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--accent-color);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--accent-color);
             color: var(--accent-color);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 600;
             transition: all 0.3s ease;
             width: max-content;
         }
@@ -145,45 +145,52 @@
         .btn:hover {
             background-color: var(--accent-color);
             color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
         }
 
+        /* Portfolio Section */
         .portfolio {
-            padding: 5rem 5%;
+            padding: 7rem 5%;
         }
 
         .section-title {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             text-align: center;
+            position: relative;
         }
 
+        /* Efek Grid 3D */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            gap: 3.5rem;
+            perspective: 1200px; 
         }
 
         .card {
             background-color: var(--surface-color);
-            border: 1px solid #2A3B5C;
-            border-radius: 8px; /* Sedikit lengkungan agar terlihat seperti window */
+            border: 1px solid #1E325C;
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d; 
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease, border-color 0.3s;
+            will-change: transform;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: rotateY(-8deg) rotateX(8deg) scale3d(1.03, 1.03, 1.03);
+            box-shadow: -20px 30px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.02);
             border-color: var(--accent-color);
         }
 
         /* Mockup Browser Header */
         .browser-header {
-            background-color: #0B132B;
-            padding: 10px 15px;
+            background-color: #060B17;
+            padding: 12px 18px;
             display: flex;
             gap: 6px;
-            border-bottom: 1px solid #2A3B5C;
+            border-bottom: 1px solid #1E325C;
         }
 
         .dot {
@@ -196,56 +203,33 @@
         .dot.yellow { background-color: #FFBD2E; }
         .dot.green { background-color: #27C93F; }
 
-        /* Iframe Container */
-        /* .iframe-container {
-            width: 120%;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .iframe-container iframe {
-            width: 1280px;
-            height: 100%;
-            border: none;
-            pointer-events: none; 
-            transform: scale(1); 
-            transform-origin: top left;
-        } */
-        /* Iframe Container */
-        /* Iframe Container */
+        /* Iframe Container & Scaling */
         .iframe-container {
-            /* Pertahankan lebar 60% yang Anda buat */
-            width: 60%;
-            /* Menggunakan rasio 16:9 agar tingginya dinamis mengikuti lebar */
+            width: 100%;
             padding-top: 60%; 
             position: relative;
             overflow: hidden;
-            /* Tambahkan ini untuk memusatkan kontainer */
-            margin: 0 auto;
-            background-color: #ffffff; /* Background putih jika web butuh waktu loading */
+            background-color: #ffffff;
         }
 
         .iframe-container iframe {
             position: absolute;
             top: 0;
             left: 0;
-            /* Perbaikan Matematika: Buat resolusinya 400% (4x lipat) */
             width: 400%;
             height: 400%;
-            /* Kemudian di-zoom out menjadi 25% (1/4 nya) agar PAS di dalam kontainer */
             transform: scale(0.25); 
             transform-origin: top left;
             border: none;
-            pointer-events: none; /* Mencegah user tidak sengaja scroll ke dalam iframe */
+            pointer-events: none; 
         }
 
         .card-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .card-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             color: var(--text-main);
         }
@@ -253,51 +237,50 @@
         .card-tech {
             font-size: 0.8rem;
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
         }
 
-        footer {
-            text-align: center;
-            padding: 3rem 5%;
-            border-top: 1px solid #2A3B5C;
+        .card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.8rem; }
             nav ul { display: none; }
-            .iframe-container { height: 200px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">MF.</a>
+        <a href="#" class="logo-container">
+            <img src="IMG_5682.jpeg" alt="Scofield Dev Logo" class="logo-img">
+            <div class="logo-text">Scofield <span>Dev</span></div>
+        </a>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#portfolio">Karya</a></li>
             <li><a href="#contact">Kontak</a></li>
-                
         </ul>
     </nav>
 
     <section id="home" class="hero">
-        <p>Halo, Selamat Datang di PORTOFOLIO Fahmi.</p>
-        <h1>Crafting <span>elegant</span> web experiences.</h1>
-        <p>Seorang Fullstack Web Developer. Kami membangun sistem web yang fungsional di backend dan menawan di frontend.</p>
-        <a href="#portfolio" class="btn">Lihat Karya Saya</a>
+        <p class="intro">Welcome to Scofield Dev</p>
+        <h1>Building <span>Structured</span> Solutions.</h1>
+        <p class="tagline">Kami memadukan arsitektur pemrograman backend yang solid dengan desain antarmuka modern untuk menghasilkan sistem informasi berbasis web yang presisi dan berkinerja tinggi.</p>
+        <a href="#portfolio" class="btn">Eksplorasi Karya</a>
     </section>
 
     <section id="portfolio" class="portfolio">
-        <h2 class="section-title">Live Preview Karya</h2>
+        <h2 class="section-title">Live Preview Proyek</h2>
         <div class="grid">
             
-            <!-- Portfolio Item 1: SIPPMA -->
             <div class="card">
                 <div class="browser-header">
                     <div class="dot red"></div>
@@ -305,56 +288,33 @@
                     <div class="dot green"></div>
                 </div>
                 <div class="iframe-container">
-                    <!-- Ganti src dengan domain tempat kamu meng-hosting web SIPPMA -->
-                    <iframe src="https://lppm-unisan.id/" title="LPPM Project"></iframe>
+                    <iframe src="https://lppm-unisan.id/" title="SIPPMA Project"></iframe>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Sistem Informasi Publik LPPM UNISAN</h3>
+                    <h3 class="card-title">Sistem Informasi Publik (SIPPMA)</h3>
                     <p class="card-tech">CodeIgniter 4 / MySQL</p>
-                    <p>Pengembangan sistem informasi terpadu dengan arsitektur database yang solid.</p>
-                    <br>
-                    <a href="https://lppm-unisan.id/" target="_blank" class="btn">Kunjungi Web Interaktif</a>
+                    <p>Pengembangan sistem informasi terpadu Lembaga Penelitian dan Pengabdian Masyarakat dengan arsitektur database relasional yang solid.</p>
+                    <a href="https://lppm-unisan.id/" target="_blank" class="btn">Kunjungi Website</a>
                 </div>
             </div>
-
-            <!-- Portfolio Item 2: Web Perpus -->
-            <!-- <div class="card">
-                <div class="browser-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="iframe-container"> -->
-                    <!-- Ganti src dengan link web perpustakaanmu -->
-                    <!-- <iframe src="https://domain-kamu.com/perpus" title="Sistem Manajemen Perpustakaan"></iframe>
-                </div> -->
-                <!-- <div class="card-content">
-                    <h3 class="card-title">Sistem Manajemen Perpustakaan</h3>
-                    <p class="card-tech">PHP / UI Design</p>
-                    <p>Sistem peminjaman buku berbasis web dengan manajemen akses terpisah untuk admin dan mahasiswa.</p>
-                    <br>
-                    <a href="https://domain-kamu.com/perpus" target="_blank" class="btn">Kunjungi Web Interaktif</a>
-                </div> -->
-            </div>
-
         </div>
     </section>
-    <footer id="contact" style="text-align: center; padding: 5rem 5%; border-top: 1px solid #2A3B5C; background-color: #0B132B;">
+
+    <footer id="contact" style="text-align: center; padding: 5rem 5%; border-top: 1px solid #1E325C; background-color: #060B17;">
         <h2 class="section-title" style="margin-bottom: 1rem; color: var(--text-main);">Mari Berkolaborasi</h2>
         <p style="color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Punya proyek menarik, butuh bantuan pengembangan sistem informasi, atau sekadar ingin berdiskusi soal teknologi? Jangan ragu untuk menghubungi saya.
+            Punya kebutuhan sistem informasi yang kompleks, integrasi database, atau ingin membangun platform web dari awal? Hubungi kami langsung.
         </p>
         
-        <a href="https://wa.me/6285823303416?text=Halo%20Fahmi,%20saya%20melihat%20portofolio%20website%20Anda%20dan%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" class="btn" style="display: inline-flex; align-items: center; gap: 10px; background-color: #25D366; color: #fff; border-color: #25D366; font-weight: 600;">
-            
+        <a href="https://wa.me/6285823303416?text=Halo%20Scofield%20Dev,%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20pengembangan%20proyek%20website." target="_blank" class="btn" style="display: inline-flex; align-items: center; gap: 10px; background-color: #25D366; color: #fff; border-color: #25D366; font-weight: 600;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
             </svg>
             Hubungi via WhatsApp
         </a>
 
-        <p style="margin-top: 4rem; font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Fahmi Rabiu. Dirancang & Dikembangkan dengan penuh ketelitian.</p>
-        </footer>
+        <p style="margin-top: 4rem; font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Scofield Dev. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
